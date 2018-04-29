@@ -43,7 +43,7 @@ module DocxAnon
 
                    out.put_next_entry(entry.name)
                    unless entry.ftype == :directory
-                     sanitizer = SANITIZERS.fetch(entry.name, NOOP)
+                     sanitizer = enabled_sanitizers.fetch(entry.name, NOOP)
                      body = sanitizer.call(entry)
                      out.write(body)
                    end
@@ -54,6 +54,14 @@ module DocxAnon
       @zip.close
 
       output_path
+    end
+
+    private
+
+    def self.enabled_sanitizers
+      SANITIZERS.reject { |key,val|
+        DocxAnon.config.disabled_sanitizers.include?(key)
+      }
     end
 
   end

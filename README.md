@@ -40,6 +40,19 @@ You can also globally specify the directory files will be written to.
 
 You can write new santizers. (see the sanitizer [README](./lib/docx_anon/sanitizers/README.md) for more info.
 
+### Disable Sanitizers
+
+You can disable any sanitizer with the `disabled_sanitizers` config option.
+This option is an array with the sanitizers `FILE_HANDLER` value as a string.
+
+These are all the current existing FILE_HANDLERs
+* `docProps/app.xml`
+* `word/comments.xml`
+* `docProps/core.xml`
+
+```ruby
+DocxAnon.configure { |c| c.disabled_sanitizers = [ "word/comments.xml" ] }
+```
 
 ## Development
 

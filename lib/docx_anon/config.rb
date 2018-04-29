@@ -1,10 +1,13 @@
 module DocxAnon
 
   class Config
-    attr_accessor :verbose, :output_dir
+    attr_accessor :verbose,
+                  :output_dir,
+                  :disabled_sanitizers
 
     def initialize
       @verbose = false
+      @disabled_sanitizers = []
     end
   end
 

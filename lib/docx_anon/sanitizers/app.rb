@@ -8,7 +8,10 @@ module DocxAnon
       def self.call(entry)
         puts "SANITIZING #{entry.name}" if DocxAnon.config.verbose
         doc = Nokogiri::XML(entry.get_input_stream.read)
-        doc.at_css("Company").inner_html = ""
+        element = doc.at_css("Company")
+        if element
+          element.inner_html = ""
+        end
         doc.to_xml
       end
     end

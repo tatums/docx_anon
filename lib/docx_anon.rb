@@ -1,6 +1,5 @@
 require 'zip'
 require 'nokogiri'
-require "pry"
 require 'fileutils'
 require "docx_anon/version"
 require "docx_anon/config"
